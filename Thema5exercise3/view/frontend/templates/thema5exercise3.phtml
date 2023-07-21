@@ -1,0 +1,33 @@
+<?php
+/** @var \Perspective\Thema5exercise3\Block\Template $block */
+$viewModel = $block->getViewModel();
+$ids = [20,21,23];
+$categoryProducts = $viewModel->getProductCollectionByCategories($ids);
+foreach ($ids as $id) {
+    $categoryName = $viewModel->getCategoryName($id);
+    echo $categoryName . ' ';
+}
+    echo "<br><br>";
+foreach ($categoryProducts as $product) {
+    echo "Name: " . $product->getName() . '<br />';
+    echo "Price: " . round($product->getData("price"), 2) . "$" . '<br />';
+    echo "Sku: " . $product->getSku() . '<br><br />';
+}   
+?> 
+<p>Вывод продуктов из категории <b>Women-Tops-Jackets</b> где, <b>Price от 50$ до 60$</b></p>
+<table border = "1">
+    <tr>
+    <th>Наименование</th>
+    <th>SKU</th>
+    <th>Price</th>
+    </tr>
+
+<?php foreach ($categoryProducts as $product): ?> 
+    <tr>
+    <td><?=$product->getName() ?> </td>
+    <td><?=$product->getSku() ?></td>
+    <td><?=round($product->getData("price"), 2) . "$" ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+

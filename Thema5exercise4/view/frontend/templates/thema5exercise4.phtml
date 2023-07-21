@@ -1,0 +1,17 @@
+<?php
+/** @var \Perspective\Thema5exercise4\Block\Template $block */
+$viewModel = $block->getViewModel();
+ $items = $viewModel->getChildrenItems();
+ echo("<p><b>Bundle</b></p>");
+    foreach ($items as $item) {
+        echo($item->getData('sku') . "<br>");
+    } 
+
+$sku = '24-WG085_Group';
+$childProductsData = $viewModel->getChildItemsFromGroupedProduct($sku);
+echo("<br><p><b>Grouped</b></p>");
+foreach ($childProductsData as $childProduct) {
+    echo($childProduct->getData("sku"). "<br>");
+}    
+?>
+
